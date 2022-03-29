@@ -67,7 +67,7 @@ class App extends React.Component {
     }
 }
 
-const Example = () => {
+const Print = () => {
     const componentRef = useRef();
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
@@ -81,7 +81,7 @@ const Example = () => {
     );
 };
 
-render(<Example />, document.querySelector("#root"));
+render(<Print />, document.querySelector("#root"));
 
 
 export default App;

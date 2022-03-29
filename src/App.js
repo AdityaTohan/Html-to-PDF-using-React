@@ -1,34 +1,9 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import pdfMake from 'pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import htmlToPdfmake from 'html-to-pdfmake';
-// import jsPDF from "jspdf";
-//import { Form } from "./Form";
+import React, { useRef } from "react";
+import { render } from "react-dom";
+import { useReactToPrint } from "react-to-print";
+import './App.css'
 
 class App extends React.Component {
-
-    printDocument() {
-
-        // var doc=new jsPDF('divToPrint');
-        // doc.save('form.pdf')
-        const pdfTable = document.getElementById('divToPrint');
-        var html = htmlToPdfmake(pdfTable.innerHTML);
-        const documentDefinition = { content: html };
-        pdfMake.vfs = pdfFonts.pdfMake.vfs;
-        pdfMake.createPdf(documentDefinition).open();
-    }
-
-
-    constructor(props) {
-        super(props)
-        this.state = {
-            users: [],
-            isLoading: false,
-            isError: false
-        }
-    }
-
 
     async componentDidMount() {
         this.setState({ isLoading: true })
@@ -40,85 +15,73 @@ class App extends React.Component {
             this.setState({ isError: true, isLoading: false })
         }
     }
-    // renderTableHeader = () => {
-    //     return Object.keys(this.state.users[0]).map(attr => <th key={attr}>{attr}</th>)
-    // }
-    // renderTableRows = () => {
-    //     return this.state.users.map(user => {
-    //         return (
-    //             <tr key={user.id}>
-    //                 <td>{user.firstName}</td>
-    //                 <td>{user.lastName}</td>
-    //                 <td>{user.userName}</td>
-    //                 <td>{user.email}</td>
-    //                 <td>{user.password}</td>
-    //             </tr>
-    //         )
-    //     })
-    // }
-
 
     render() {
-        const { users, isLoading, isError } = this.state
+        return (
 
-        if (isLoading) {
-            return <div>Loading...</div>
-        }
-
-        if (isError) {
-            return <div>Error</div>
-        }
-
-        return users.length > 0
-            ? (
-                <div style={{padding:'150px'}}>
+                <div className="container" style={{padding:"20px",width:"52%"}}>
                     <div id="divToPrint">
-                        {/*<table className="table">*/}
-                        {/*    <thead className="thead-dark">*/}
-                        {/*    <tr>*/}
-                        {/*        {this.renderTableHeader()}*/}
-                        {/*    </tr>*/}
-                        {/*    </thead>*/}
-                        {/*    <tbody>*/}
-                        {/*        {this.renderTableRows()}*/}
-                        {/*    </tbody>*/}
-                        {/*</table>*/}
-                        <p style={{textAlign:"center"}}>Choice Payment Services</p>
-                        <p>PO Box 232138</p>
-                        <p>Las Vegas, NV 89105</p>
-                        <p >Toll Free:  1-855-918-1806</p>
-                        <p >Support@choicepayshelp.zendesk.com</p>
-                        <h2 ><u>Modification Agreement</u></h2>
-                        <h2 >(<u>Closed end loans</u>)</h2>
-                        <p>Agreement Date:</p>
-                        <p><b><i>Consumer Information</i></b></p>
-                        <p>Account #:</p>
-                        <p>Name: {this.state.users.name}_____________________    Phone:____________________{this.state.users.name}</p>
-                        <p>Address:{this.state.users.name}_____________________ Email:_____________________{this.state.users.name}</p>
-                        <p><b><u>Modification Information</u></b></p>
-                        <p>Payment Date Deferred:{this.state.users.name}</p>
-                        <p>Date of Next Payment:{this.state.users.name}</p>
-                        <p>Term Remaining:{this.state.users.name}</p>
-                        <p>By signing this Agreement, you understand and agree that this is a one-time payment deferment, interest will continue to accrue on the deferred payment, and the missed payment will be added to the end of the loan which will extend your term loan by one month. You also agree that all other provisions of the original Loan Agreement with Medallion Bank offered by Choice remain in full force and effect and are still enforceable.</p>
-                        <p>I have read and understand the above information and agree to the terms.</p>
-                        <p>Signature____________________________________________________ Date___________________________</p>
-                        <h1>_____________________________________________________________________________</h1>
-                        <p ><b>***For Office Use Only***</b></p>
-                        <p>Agent Signature_______________________________________________ Date___________________________</p>
-                        <p>Manager Signature_________________________________________ Date___________________________</p>
+                        <div style={{textAlign:"center"}}>
+                            <div style={{padding:"0px"}}>Choice Payment Services</div>
+                            <div style={{padding:"0px"}}>PO Box 232138</div>
+                            <div style={{padding:"0px"}}>Las Vegas, NV 89105</div>
+                            <div style={{padding:"0px"}}>Toll Free:  1-855-918-1806</div>
+                            <div style={{padding:"0px"}}>Support@choicepayshelp.zendesk.com</div>
+                            <div> </div>
+                        </div>
 
+                        <h3 style={{textAlign:"center"}}><u>Modification Agreement</u></h3>
+                        <h3 style={{textAlign:"center",padding:"10px"}}>(<u>Closed end loans</u>)</h3>
+
+                        <div>Agreement Date:</div>
+                        <div><b><u>Consumer Information</u></b></div>
+                        <div>Account #:</div>
+                        <div>
+                            <table style={{width:"100%"}}>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>Phone:</td>
+                                </tr>
+                                <tr>
+                                    <td style={{paddingBottom:"50px"}}>Address:</td>
+                                    <td  style={{paddingBottom:"50px"}}>Email:</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div><b><u>Modification Information</u></b></div>
+                        <div>Payment Date Deferred:</div>
+                        <div>Date of Next Payment:</div>
+                        <div>Term Remaining:</div>
+                        <div>By signing this Agreement, you understand and agree that this is a one-time payment deferment, interest will continue to accrue on the deferred payment, and the missed payment will be added to the end of the loan which will extend your term loan by one month. You also agree that all other provisions of the original Loan Agreement with Medallion Bank offered by Choice remain in full force and effect and are still enforceable.</div>
+                        <div>I have read and understand the above information and agree to the terms.</div>
+                        <div style={{paddingTop:"40px"}}>
+                            <span>Signature</span>________________________________________________________ <span style={{float:"right"}}>Date___________________________</span>
+                        </div>
+                        <div><h1>_______________________________________________________</h1></div>
+                        <div style={{textAlign:"center"}}><b>***For Office Use Only***</b></div>
+                        <div>Agent Signature___________________________________________________ <span style={{float:"right"}}>Date___________________________</span></div>
+                        <div>Manager Signature________________________________________________ <span style={{float:"right"}}>Date___________________________</span></div>
                     </div>
-                    <button className="btn btn-primary float-right" onClick={this.printDocument}>Export To PDF</button>
                 </div>
-
-            ) : (
-                <div>
-                    No users.
-                </div>
-            )
-
+        );
     }
 }
+
+const Example = () => {
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+        content: () => componentRef.current,
+    });
+
+    return (
+        <div style={{padding:"50px"}}>
+            <App ref={componentRef} />
+            <button className="btn btn-primary float-right" onClick={handlePrint}>Export To PDF</button>
+        </div>
+    );
+};
+
+render(<Example />, document.querySelector("#root"));
 
 
 export default App;

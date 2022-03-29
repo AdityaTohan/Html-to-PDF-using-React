@@ -71,7 +71,7 @@ class App extends React.Component {
 
         return users.length > 0
             ? (
-                <div style={{padding:"100px"}}>
+                <div style={{padding:'150px'}}>
                     <div id="divToPrint">
                         {/*<table className="table">*/}
                         {/*    <thead className="thead-dark">*/}
@@ -83,23 +83,22 @@ class App extends React.Component {
                         {/*        {this.renderTableRows()}*/}
                         {/*    </tbody>*/}
                         {/*</table>*/}
-                        <p>Choice Payment Services</p>
+                        <p style={{textAlign:"center"}}>Choice Payment Services</p>
                         <p>PO Box 232138</p>
                         <p>Las Vegas, NV 89105</p>
                         <p >Toll Free:  1-855-918-1806</p>
                         <p >Support@choicepayshelp.zendesk.com</p>
-                        <h1 ><u>Modification Agreement</u></h1>
-                        <h1 >(<u>Closed end loans</u>)</h1>
+                        <h2 ><u>Modification Agreement</u></h2>
+                        <h2 >(<u>Closed end loans</u>)</h2>
                         <p>Agreement Date:</p>
                         <p><b><i>Consumer Information</i></b></p>
                         <p>Account #:</p>
-                        <p>Phone:</p>
-                        <p>Address:</p>
-                        <p>Email:</p>
+                        <p>Name: {this.state.users.name}_____________________    Phone:____________________{this.state.users.name}</p>
+                        <p>Address:{this.state.users.name}_____________________ Email:_____________________{this.state.users.name}</p>
                         <p><b><u>Modification Information</u></b></p>
-                        <p>Payment Date Deferred:</p>
-                        <p>Date of Next Payment</p>
-                        <p>Term Remaining:</p>
+                        <p>Payment Date Deferred:{this.state.users.name}</p>
+                        <p>Date of Next Payment:{this.state.users.name}</p>
+                        <p>Term Remaining:{this.state.users.name}</p>
                         <p>By signing this Agreement, you understand and agree that this is a one-time payment deferment, interest will continue to accrue on the deferred payment, and the missed payment will be added to the end of the loan which will extend your term loan by one month. You also agree that all other provisions of the original Loan Agreement with Medallion Bank offered by Choice remain in full force and effect and are still enforceable.</p>
                         <p>I have read and understand the above information and agree to the terms.</p>
                         <p>Signature____________________________________________________ Date___________________________</p>
